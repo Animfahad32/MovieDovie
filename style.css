@@ -1,0 +1,114 @@
+@import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;700;800;900&display=swap");
+
+:root {
+  --primary-color: #201f32;
+  --secondary-color: rgb(75 9 121);
+}
+::selection {
+  color: #fff;
+  background: rgb(152, 29, 240);
+}
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  background-color: var(--primary-color);
+}
+
+header {
+  background-color: var(--secondary-color);
+  padding: 1rem;
+}
+.logo {
+  color: #fff;
+  font-family: "Kaushan Script", cursive;
+  font-size: 2rem;
+}
+
+.form-control:focus {
+  border-color: #cccccc;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.search {
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.movie-rating {
+  background-color: var(--primary-color);
+  padding: 0.25rem;
+  border-radius: 3px;
+  font-weight: bold;
+}
+.movie-rating.green {
+  color: lightgreen;
+}
+.movie-rating.orange {
+  color: orange;
+}
+.movie-rating.red {
+  color: orangered;
+}
+.btn {
+  background-color: var(--secondary-color);
+  color: #fff;
+}
+.btn:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+img {
+  -webkit-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+img {
+  pointer-events: none;
+}
+.movie_card {
+  padding: 0 !important;
+  margin-top: 3rem;
+  border-radius: 10px;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 15px 0 rgba(0, 0, 0, 0.19);
+}
+.movie_card:hover {
+}
+.movie_card img {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.movie_info {
+  color: #5e5c5c;
+}
+
+.movie_info i {
+  font-size: 20px;
+}
+.card-title {
+  width: 80%;
+  height: 4rem;
+}
+
+.play_button {
+  background-color: var(--secondary-color);
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  right: 20px;
+  bottom: 111px;
+  font-size: 27px;
+  padding-left: 21px;
+  padding-top: 16px;
+  color: #ffffff;
+  cursor: pointer;
+}
+.play_button:hover {
+  background-color: #ff3d49;
+  transform: scale(1.05);
+
+  transition: 0.5s ease-in-out;
+}
