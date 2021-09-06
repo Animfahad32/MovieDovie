@@ -8,12 +8,16 @@ const searchUrl = baseUrl+'/search/movie?'+apiKey ;
 const main = document.getElementById('movieList');
 const form = document.getElementById('form');
 const search = document.getElementById('search');
+
 getMovies(apiUrl);
+
 function getMovies(url){
     fetch(url).then(res => res.json()).then(data => {
       
         showMovies(data.results);
+       
     })
+    
 }
 
 
@@ -21,7 +25,8 @@ function getMovies(url){
 function showMovies(data){
     
     data.forEach(movie => {
-        const {title, poster_path,release_date, vote_average } = movie;
+        
+        const {title, poster_path,release_date, vote_average, id} = movie;
         const movieElement = document.createElement('div');
         movieElement.classList.add('col-md-3');
         movieElement.innerHTML = `
@@ -33,8 +38,8 @@ function showMovies(data){
         <div class="card movie_card shadow-sm">
         <img src="${imgUrl+poster_path}" class="card-img-top" alt="${title}">
         <div class="card-body">
-            <i class="fas fa-play play_button" data-toggle="tooltip" data-placement="bottom" title="Play Trailer">
-            </i>
+       <i class="fas fa-play play_button " id="${id}" data-toggle="tooltip" data-placement="bottom"  title="Play Trailer"></i>
+        
           <h5 class="card-title">${title}</h5>
                  <span class="movie_info">${release_date}</span>
                  <span class="movie-rating movie_info float-right ${getColor(vote_average)}">${vote_average}/10</span>
@@ -43,6 +48,9 @@ function showMovies(data){
         
         `
         main.appendChild(movieElement);
+        document.getElementById(id).addEventListener('click', () =>{
+            playTrailer(id);
+        })
     })
 
 }
@@ -65,6 +73,7 @@ form.addEventListener('submit', (e) => {
    
     if(searchTerm){
         getMovies(searchUrl+'&query='+searchTerm);
+      
         main.innerHTML = '';
    
        
@@ -73,6 +82,21 @@ form.addEventListener('submit', (e) => {
     }
 })
 
-
-
-
+function playTrailer(id){
+    
+    fetch(baseUrl+ '/movie/'+id+'/videos?'+apiKey)
+    .then(res => res.json())
+    .then(videoData => {
+        console.log(videoData);
+       
+     
+          
+            videoData.results.forEach(video => {
+                if(video.type == 'Trailer'){
+                    console.log(video);
+                window.open('https://www.youtube.com/watch?v='+video.key, '_blank')
+                }
+            })
+        
+    }) 
+}
